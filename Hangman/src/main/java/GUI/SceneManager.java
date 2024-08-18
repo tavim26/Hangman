@@ -27,11 +27,12 @@ public class SceneManager {
         FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlFile));
         Parent root = loader.load();
 
-        // Obține instanța controller-ului și pasează datele
+        PlayerController controller = loader.getController();
 
+        controller.setCurrentPlayer(player);
 
-        Stage stage = new Stage();
         stage.setScene(new Scene(root, width, height));
         stage.show();
     }
+
 }

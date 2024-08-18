@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -153,8 +154,7 @@ public class MainController
 
 
     @FXML
-    public void clickLogIn() throws SQLException
-    {
+    public void clickLogIn() throws SQLException, IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -182,7 +182,7 @@ public class MainController
 
         showAlert(Alert.AlertType.CONFIRMATION,"Log In Successful", "Log In Successful");
         //ce se intampla cand logarea merge
-       // SceneManager.changeSceneWithUserData(currentPlayer);
+        SceneManager.changeSceneWithUserData("/SceneBuilder/player.fxml",632,435,currentPlayer);
 
 
     }

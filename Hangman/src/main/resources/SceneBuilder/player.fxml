@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="632.0" style="-fx-background-color: #8a7051;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PlayerController">
+   <right>
+      <StackPane prefHeight="435.0" prefWidth="448.0" style="-fx-background-color: #f5f7b0;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="playPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="21.0" text="Welcome to Hangman!">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="84.0" text="Choose the difficulty level">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="easyBox" layoutX="36.0" layoutY="114.0" mnemonicParsing="false" text="Easy" />
+                  <RadioButton fx:id="mediumBox" layoutX="36.0" layoutY="138.0" mnemonicParsing="false" text="Medium" />
+                  <RadioButton fx:id="hardBox" layoutX="35.0" layoutY="164.0" mnemonicParsing="false" text="Hard" />
+                  <Label layoutX="20.0" layoutY="218.0" text="Choose a category">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="carsBox" layoutX="35.0" layoutY="248.0" mnemonicParsing="false" text="Cars" />
+                  <RadioButton fx:id="plantsBox" layoutX="35.0" layoutY="274.0" mnemonicParsing="false" text="Plants" />
+                  <RadioButton fx:id="animalsBox" layoutX="35.0" layoutY="299.0" mnemonicParsing="false" text="Animals" />
+                  <RadioButton fx:id="countriesBox" layoutX="244.0" layoutY="248.0" mnemonicParsing="false" text="Countries" />
+                  <RadioButton fx:id="jobsBox" layoutX="244.0" layoutY="274.0" mnemonicParsing="false" text="Jobs" />
+                  <RadioButton fx:id="gamesBox" layoutX="244.0" layoutY="299.0" mnemonicParsing="false" text="Video Games" />
+                  <Button fx:id="startGameButton" layoutX="169.0" layoutY="368.0" mnemonicParsing="false" onAction="#clickStartGame" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #8a7051;" text="Start!" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="helpPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="30.0" text="Help - How to play Hangman">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="7.0" layoutY="71.0" text=" Game Modes">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="46.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy = 9 attempts to guess the word" />
+                  <Text layoutX="46.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium = 6 attempts to guess the word" />
+                  <Text layoutX="46.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hard = 3 attempts to guess the word" />
+                  <Label layoutX="14.0" layoutY="176.0" text="How to play">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="46.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="46.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First, choose a difficulty level" />
+                  <Text layoutX="46.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second, pick a category " />
+                  <Text layoutX="46.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Third, try to guess the word" />
+                  <Text layoutX="46.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Win or lose" />
+                  <Label layoutX="15.0" layoutY="305.0" text="Tips and tricks">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="46.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start by guessing the common vowels first (A,E,I,O,U)" />
+                  <Text layoutX="33.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="as they are present in most of the words!" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="trophiesPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="27.0" text="Achievements">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="5.0" layoutY="105.0" prefHeight="252.0" prefWidth="135.0" spacing="30.0">
+                     <children>
+                        <Button fx:id="noviceB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Novice" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="expertB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Expert" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="categoricB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Categoric" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="masterB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Mode master" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="148.0" layoutY="105.0" prefHeight="252.0" prefWidth="139.0" spacing="30.0">
+                     <children>
+                        <Button fx:id="easyB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Easy, right?" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="intermediateB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Intermediate" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="hardcoreB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Hardcore" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Mr. Detective" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="294.0" layoutY="105.0" prefHeight="252.0" prefWidth="135.0" spacing="30.0">
+                     <children>
+                        <Button fx:id="carExpertB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Car expert" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="leafyB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Leafy" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="turistB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Turist" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="gamerB" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #8a7051;" text="Gamer" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="gamesPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="29.0" text="Games History">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="gamesTable" layoutX="15.0" layoutY="84.0" prefHeight="200.0" prefWidth="401.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </right>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER" layoutX="46.0" layoutY="14.0" prefHeight="98.0" prefWidth="108.0">
+               <children>
+                  <ImageView fitHeight="101.0" fitWidth="102.0">
+                     <image>
+                        <Image url="@pf.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" layoutX="10.0" layoutY="207.0" prefHeight="219.0" prefWidth="179.0" spacing="20.0" style="-fx-background-color: #f5f7b0;">
+               <children>
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#clickPlay" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: #8a7051; -fx-background-radius: 30;" text="Play" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="helpButton" mnemonicParsing="false" onAction="#clickHelp" prefHeight="32.0" prefWidth="104.0" style="-fx-background-color: #8a7051; -fx-background-radius: 30;" text="Help" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="trophiesButton" mnemonicParsing="false" onAction="#clickTrophies" prefHeight="32.0" prefWidth="102.0" style="-fx-background-color: #8a7051; -fx-background-radius: 30;" text="Trophies" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="gamesButton" mnemonicParsing="false" onAction="#clickGames" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: #8a7051; -fx-background-radius: 30;" text="Games" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="5.0" layoutY="122.0" prefHeight="72.0" prefWidth="188.0" spacing="10.0">
+               <children>
+                  <Label fx:id="usernameLabel" text="username" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#clickLogOut" prefHeight="35.0" prefWidth="99.0" style="-fx-background-color: #f5f7b0;" text="Log Out">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

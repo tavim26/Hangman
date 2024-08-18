@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainView extends Application {
+public class PlayerView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException
@@ -15,9 +15,9 @@ public class MainView extends Application {
         SceneManager.setStage(primaryStage);
         primaryStage.setResizable(false);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainView.class.getResource("/SceneBuilder/main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 302, 505);
-        primaryStage.setTitle("Log In/Sign Up");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainView.class.getResource("/SceneBuilder/player.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 632, 435);
+        primaryStage.setTitle("Player Dashboard");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
