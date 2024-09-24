@@ -1,19 +1,23 @@
 package GUI;
 
+import Database.GameDAO;
+import Model.Game;
 import Model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
+
 
 public class PlayerController {
 
@@ -80,15 +84,18 @@ public class PlayerController {
     private RadioButton gamesBox;
 
     @FXML
-    private TableView<?> gamesTable;
+    private TableView<Game> gamesTable;
 
 
     Player currentPlayer;
+
+    GameDAO gameDAO;
 
     public void setCurrentPlayer(Player player)
     {
         this.currentPlayer = player;
         usernameLabel.setText(player.getUsername());
+        populateGamesTable();
     }
 
     @FXML
@@ -218,6 +225,47 @@ public class PlayerController {
 
         return null;
     }
+
+
+
+
+    private void populateGamesTable()
+    {
+        gamesTable.getColumns().clear();
+        gamesTable.getItems().clear();
+
+        TableColumn<Game, Integer> gameIdColumn = new TableColumn<>("GameID");
+        gameIdColumn.setCellValueFactory(new PropertyValueFactory<>("gameID"));
+
+        TableColumn<Game, Integer> playerIdColumn = new TableColumn<>("PlayerID");
+        playerIdColumn.setCellValueFactory(new PropertyValueFactory<>("playerID"));
+
+        TableColumn<Game, String> gameModeColumn = new TableColumn<>("GameMode");
+        gameModeColumn.setCellValueFactory(new PropertyValueFactory<>("gameMode"));
+
+        TableColumn<Game, String> wordColumn = new TableColumn<>("Word");
+        wordColumn.setCellValueFactory(new PropertyValueFactory<>("word"));
+
+        TableColumn<Game, Integer> remainingAttemptsColumn = new TableColumn<>("RemainingAttempts");
+        remainingAttemptsColumn.setCellValueFactory(new PropertyValueFactory<>("remainingAttempts"));
+
+        TableColumn<Game, String> statusColumn = new TableColumn<>("Status");
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        gamesTable.getColumns().addAll(gameIdColumn, playerIdColumn, gameModeColumn, wordColumn, remainingAttemptsColumn, statusColumn);
+
+        try {
+            gameDAO = new GameDAO();
+            List<Game> games = gameDAO.getGamesByPlayer(currentPlayer.getPlayerID());
+            gamesTable.getItems().setAll(games);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     private void showError(String message)
     {

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameDAO
 {
@@ -46,4 +48,30 @@ public class GameDAO
         }
         return null;
     }
+
+
+    public List<Game> getGamesByPlayer(int playerID) throws SQLException {
+        List<Game> gamesList = new ArrayList<>();
+        String query = "SELECT * FROM Game WHERE PlayerID = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, playerID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Game game = new Game(
+                        rs.getInt("GameID"),
+                        rs.getInt("PlayerID"),
+                        rs.getString("GameMode"),
+                        rs.getString("Word"),
+                        rs.getInt("RemainingAttempts"),
+                        rs.getString("Status")
+                );
+                gamesList.add(game);
+            }
+        }
+        return gamesList;
+    }
 }
+
