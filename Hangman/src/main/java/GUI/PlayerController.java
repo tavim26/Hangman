@@ -2,11 +2,15 @@ package GUI;
 
 import Model.Player;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -23,8 +27,6 @@ public class PlayerController {
     @FXML
     private AnchorPane helpPane;
 
-    @FXML
-    private AnchorPane trophiesPane;
 
     @FXML
     private AnchorPane gamesPane;
@@ -80,39 +82,6 @@ public class PlayerController {
     @FXML
     private TableView<?> gamesTable;
 
-    @FXML
-    private Button noviceB;
-
-    @FXML
-    private Button expertB;
-
-    @FXML
-    private Button categoricB;
-
-    @FXML
-    private Button masterB;
-
-    @FXML
-    private Button easyB;
-
-    @FXML
-    private Button intermediateB;
-
-    @FXML
-    private Button hardcoreB;
-
-    @FXML
-    private Button carExpertB;
-
-    @FXML
-    private Button leafyB;
-
-    @FXML
-    private Button turistB;
-
-    @FXML
-    private Button gamerB;
-
 
     Player currentPlayer;
 
@@ -128,7 +97,6 @@ public class PlayerController {
         playPane.setVisible(true);
 
         helpPane.setVisible(false);
-        trophiesPane.setVisible(false);
         gamesPane.setVisible(false);
     }
 
@@ -138,33 +106,48 @@ public class PlayerController {
         playPane.setVisible(false);
 
         helpPane.setVisible(true);
-        trophiesPane.setVisible(false);
         gamesPane.setVisible(false);
     }
 
-    @FXML
-    private void clickTrophies() {
-        playPane.setVisible(false);
 
-        helpPane.setVisible(false);
-        trophiesPane.setVisible(true);
-        gamesPane.setVisible(false);
-
-    }
 
     @FXML
     private void clickGames() {
         playPane.setVisible(false);
 
         helpPane.setVisible(false);
-        trophiesPane.setVisible(false);
         gamesPane.setVisible(true);
     }
 
     @FXML
     private void clickStartGame()
     {
+        String selectedDifficulty = getSelectedDifficulty();
+        String selectedCategory = getSelectedCategory();
 
+        if (selectedDifficulty == null || selectedCategory == null)
+        {
+            showError("Please select both difficulty level and category.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SceneBuilder/game.fxml"));
+            Parent root = loader.load();
+
+            GameController gameController = loader.getController();
+
+            gameController.initialize(selectedDifficulty, selectedCategory, currentPlayer);
+
+            Scene scene = new Scene(root, 404, 489);
+            Stage stage = (Stage) startGameButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -185,6 +168,64 @@ public class PlayerController {
         {
             alert.close();
         }
+    }
+
+
+
+    private String getSelectedDifficulty()
+    {
+        if (easyBox.isSelected())
+        {
+            return "easy";
+        }
+        else if (mediumBox.isSelected())
+        {
+            return "medium";
+        }
+        else if (hardBox.isSelected())
+        {
+            return "hard";
+        }
+        return null;
+    }
+
+    private String getSelectedCategory()
+    {
+        if (carsBox.isSelected())
+        {
+            return "cars";
+        }
+        else if (plantsBox.isSelected())
+        {
+            return "plants";
+        }
+        else if (animalsBox.isSelected())
+        {
+            return "animals";
+        }
+        else if (countriesBox.isSelected())
+        {
+            return "countries";
+        }
+        else if (jobsBox.isSelected())
+        {
+            return "jobs";
+        }
+        else if (gamesBox.isSelected())
+        {
+            return "videogames";
+        }
+
+        return null;
+    }
+
+    private void showError(String message)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

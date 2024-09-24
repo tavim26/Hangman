@@ -12,7 +12,7 @@ public class GameDAO
 {
     public void addGame(Game game) throws SQLException
     {
-        String query = "INSERT INTO Game (PlayerID, Word, RemainingAttempts, Status) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Game (PlayerID,GameMode, Word, RemainingAttempts, Status) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {

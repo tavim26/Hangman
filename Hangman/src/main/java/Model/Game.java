@@ -18,6 +18,14 @@ public class Game {
         this.status = status;
     }
 
+    public Game(int playerID,String gameMode, String word, int remainingAttempts, String status) {
+        this.playerID = playerID;
+        this.gameMode = gameMode;
+        this.word = word;
+        this.remainingAttempts = remainingAttempts;
+        this.status = status;
+    }
+
     public String getGameMode() {
         return gameMode;
     }

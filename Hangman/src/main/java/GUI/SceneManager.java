@@ -35,4 +35,17 @@ public class SceneManager {
         stage.show();
     }
 
+    public static void openSceneWithUserData(String fxmlFile, int width, int height, Player player) throws IOException
+    {
+        Stage newStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlFile));
+        Parent root = loader.load();
+
+        PlayerController controller = loader.getController();
+        controller.setCurrentPlayer(player);
+
+        newStage.setScene(new Scene(root, width, height));
+        newStage.show();
+    }
+
 }
